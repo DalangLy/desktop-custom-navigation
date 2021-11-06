@@ -21,14 +21,17 @@ class _DesktopMaterialState extends State<DesktopMaterial> {
   int index = 0;
 
   List<Widget> childrenPage = [];
+  List<String> tempRoutes = [];
 
   void pushName({required List<String> routes,}){
     try{
       childrenPage.clear();
-      index = widget.routes.indexWhere((element) => element.route.contains(routes.first));
-      if(routes.length > 1){
-        routes.removeAt(0);
-        kk(widget.routes[index].children, routes, routes.first, 0);
+      tempRoutes.clear();
+      tempRoutes.addAll(routes);
+      index = widget.routes.indexWhere((element) => element.route.contains(tempRoutes.first));
+      if(tempRoutes.length > 1){
+        tempRoutes.removeAt(0);
+        kk(widget.routes[index].children, tempRoutes, tempRoutes.first, 0);
       }
       valueNotifier.value = Stack(
         children: [widget.routes[index].page, ...childrenPage],
