@@ -17,17 +17,20 @@ class DesktopMaterial extends StatefulWidget {
 class _DesktopMaterialState extends State<DesktopMaterial> {
 
   final ValueNotifier<Widget> valueNotifier = ValueNotifier<Widget>(const SizedBox());
+  final ValueNotifier<List<String>> selectedRouteNotifier = ValueNotifier<List<String>>(['dashboard']);
 
   int index = 0;
 
   List<Widget> childrenPage = [];
   List<String> tempRoutes = [];
-
+  List<String> selectedRoutes = [];
   void pushName({required List<String> routes,}){
     try{
       childrenPage.clear();
       tempRoutes.clear();
+      selectedRoutes.clear();
       tempRoutes.addAll(routes);
+      selectedRoutes.addAll(routes);
       index = widget.routes.indexWhere((element) => element.route.contains(tempRoutes.first));
       if(tempRoutes.length > 1){
         tempRoutes.removeAt(0);
@@ -36,6 +39,7 @@ class _DesktopMaterialState extends State<DesktopMaterial> {
       valueNotifier.value = Stack(
         children: [widget.routes[index].page, ...childrenPage],
       );
+      selectedRouteNotifier.value = routes;
     }catch(e){
       valueNotifier.value = Stack(
         children: const [
@@ -64,6 +68,16 @@ class _DesktopMaterialState extends State<DesktopMaterial> {
     valueNotifier.value = Stack(
       children: [widget.routes[index].page, ...childrenPage],
     );
+
+    _removeSelectedRouteToUpdateNavigationBuilder();
+  }
+
+  void _removeSelectedRouteToUpdateNavigationBuilder(){
+    selectedRoutes.removeLast();
+    selectedRouteNotifier.value = selectedRoutes;
+    if(selectedRoutes.length < 2){
+      selectedRouteNotifier.value = [selectedRoutes.first];
+    }
   }
 
   @override
