@@ -11,12 +11,12 @@ class MyNavigation extends StatefulWidget {
 
 class _MyNavigationState extends State<MyNavigation> {
   final List<_MyRouteItem> routeItems = const [
-    _MyRouteItem(title: 'Home', myRoutes: ['dashboard']),
+    _MyRouteItem(title: 'Dashboard', myRoutes: ['dashboard']),
     _MyRouteItem(title: 'Item', myRoutes: ['item']),
-    _MyRouteItem(title: 'Add Item', myRoutes: ['item', 'add_item']),
-    _MyRouteItem(title: 'Edit Item', myRoutes: ['item', 'edit_item']),
-    _MyRouteItem(title: 'Third Page', myRoutes: ['item', 'add_item', 'third_page']),
-    _MyRouteItem(title: 'Unknown', myRoutes: ['unknown']),
+    // _MyRouteItem(title: 'Add Item', myRoutes: ['item', 'add_item']),
+    // _MyRouteItem(title: 'Edit Item', myRoutes: ['item', 'edit_item']),
+    // _MyRouteItem(title: 'Third Page', myRoutes: ['item', 'add_item', 'third_page']),
+    // _MyRouteItem(title: 'Unknown', myRoutes: ['unknown']),
   ];
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,6 @@ class _MyNavigationState extends State<MyNavigation> {
       padding: const EdgeInsets.all(8.0),
       child: RouteNavigationBuilder(
         builder: (BuildContext context, List<String> routes) {
-          print('navigation builder $routes');
           return ListView.builder(
             itemCount: routeItems.length,
             itemBuilder: (context, index) {

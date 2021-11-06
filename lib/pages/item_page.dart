@@ -6,28 +6,60 @@ class ItemPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        width: double.infinity,
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Item Page'),
-            ElevatedButton(
-              onPressed: (){
-                DesktopMaterial.of(context).pop();
-              },
-              child: const Text('Back'),
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      color: Colors.white,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const ElevatedButton(
+            onPressed: null,
+            child: Text(''),
+          ),
+          const Divider(),
+          Expanded(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 60,
+                  child: Row(
+                    children: const [
+                      ElevatedButton(
+                        onPressed: null,
+                        child: Text('Item'),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Item Page'),
+                        const SizedBox(height: 10,),
+                        ElevatedButton(
+                          onPressed: () {
+                            DesktopMaterial.of(context).pushName(routes: ['item', 'add_item']);
+                          },
+                          child: const Text('Add Item'),
+                        ),
+                        const SizedBox(height: 10,),
+                        ElevatedButton(
+                          onPressed: () {
+                            DesktopMaterial.of(context).pushName(routes: ['item', 'edit_item']);
+                          },
+                          child: const Text('Edit Item'),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-            ElevatedButton(
-              onPressed: (){
-                DesktopMaterial.of(context).pushName(routes: ['item', 'add_item']);
-              },
-              child: const Text('Add Item'),
-            )
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

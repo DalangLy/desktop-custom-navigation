@@ -6,21 +6,50 @@ class EditItemPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Edit Item Page'),
-            ElevatedButton(
-              onPressed: (){
-                DesktopMaterial.of(context).pop();
-              },
-              child: const Text('Back'),
-            )
-          ],
-        ),
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      color: Colors.white,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              DesktopMaterial.of(context).pop();
+            },
+            child: const Text('Back'),
+          ),
+          const Divider(),
+          Expanded(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 60,
+                  child: Row(
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          DesktopMaterial.of(context).pushName(routes: ['item']);
+                        },
+                        child: const Text('Item'),
+                      ),
+                      const SizedBox(width: 10,),
+                      const ElevatedButton(
+                        onPressed: null,
+                        child: Text('Edit Item'),
+                      ),
+                    ],
+                  ),
+                ),
+                const Expanded(
+                  child: Center(
+                    child: Text('Edit Item Page'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
